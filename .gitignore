@@ -4,4 +4,4 @@
 /md5.h
 /test.c
 /test.cpp
-/test.exe
+*.exe
