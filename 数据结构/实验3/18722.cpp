@@ -9,14 +9,24 @@ public:
     int row;
     int col;
     int value;
-};
-
-bool compareTriples(const Triple& a, const Triple& b) {
-    if (a.row != b.row) {
-        return a.row < b.row;
+    
+    Triple(int r = 0, int c = 0, int v = 0) : row(r), col(c), value(v) {}
+    
+    void transpose() {
+        swap(row, col);
     }
-    return a.col < b.col;
-}
+    
+    bool operator<(const Triple& other) const {
+        if (row != other.row) {
+            return row < other.row;
+        }
+        return col < other.col;
+    }
+    
+    void display() const {
+        cout << row << " " << col << " " << value << endl;
+    }
+};
 
 int main() {
     int n, m, k;
@@ -24,17 +34,19 @@ int main() {
     
     vector<Triple> triples(k);
     for (int i = 0; i < k; i++) {
-        cin >> triples[i].row >> triples[i].col >> triples[i].value;
+        int r, c, v;
+        cin >> r >> c >> v;
+        triples[i] = Triple(r, c, v);
     }
     
     for (int i = 0; i < k; i++) {
-        swap(triples[i].row, triples[i].col);
+        triples[i].transpose();
     }
     
-    sort(triples.begin(), triples.end(), compareTriples);
+    sort(triples.begin(), triples.end());
 
     for (int i = 0; i < k; i++) {
-        cout << triples[i].row << " " << triples[i].col << " " << triples[i].value << endl;
+        triples[i].display();
     }
     
     return 0;
