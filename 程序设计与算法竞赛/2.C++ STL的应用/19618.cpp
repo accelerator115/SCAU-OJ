@@ -1,74 +1,52 @@
-#include <iostream>
+#include <stdio.h>
 #include <queue>
-#include <vector>
-#include <iomanip>
-
 using namespace std;
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    cout.tie(0);
-    
+typedef struct
+{
+    int r; // row
+    int c; // column
+    int s; // step
+} LOC;
+int sr, sc, dr, dc;
+int dir[4][2] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+char d[100][100];
+void solve()
+{
+    int m, n, i, nr, nc;
+    queue<LOC> q;
+    scanf("%d%d", &m, &n);
+    for (i = 0; i < m; i++)
+        scanf("%s", d[i]);
+    scanf("%d%d%d%d", &sr, &sc, &dr, &dc);
+    LOC first = {sr, sc, 0};
+    q.push(first);
+    while (!q.empty())
+    {
+        LOC cur = q.front();
+        q.pop();
+        if (cur.r == dr && cur.c == dc)
+        {
+            printf("%d\n", cur.s);
+            return;
+        }
+        for (i = 0; i < 4; i++)
+        {
+            nr = cur.r + dir[i][0];
+            nc = cur.c + dir[i][1];
+            if (nr >= 0 && nr < m && nc >= 0 && nc < n && d[nr][nc] == '0')
+            {
+                d[nr][nc] = '1';
+                LOC next = {nr, nc, cur.s + 1};
+                q.push(next);
+            }
+        }
+    }
+    printf("die\n");
+}
+int main()
+{
     int n;
-    cin >> n;
-    
-    priority_queue<int> maxHeap;
-    priority_queue<int, vector<int>, greater<int>> minHeap;
-    
-    for (int i = 0; i < n; i++) {
-        int num;
-        cin >> num;
-        
-        if (maxHeap.empty() || num <= maxHeap.top()) {
-            maxHeap.push(num);
-        } else {
-            minHeap.push(num);
-        }
-        
-        if (maxHeap.size() > minHeap.size() + 1) {
-            minHeap.push(maxHeap.top());
-            maxHeap.pop();
-        } else if (minHeap.size() > maxHeap.size()) {
-            maxHeap.push(minHeap.top());
-            minHeap.pop();
-        }
-    }
-    
-    int m;
-    cin >> m;
-    
-    for (int i = 0; i < m; i++) {
-        int num;
-        cin >> num;
-        
-        if (maxHeap.empty() || num <= maxHeap.top()) {
-            maxHeap.push(num);
-        } else {
-            minHeap.push(num);
-        }
-
-        if (maxHeap.size() > minHeap.size() + 1) {
-            minHeap.push(maxHeap.top());
-            maxHeap.pop();
-        } else if (minHeap.size() > maxHeap.size()) {
-            maxHeap.push(minHeap.top());
-            minHeap.pop();
-        }
-
-        double median;
-        if ((maxHeap.size() + minHeap.size()) % 2 == 1) {
-            median = maxHeap.top();
-        } else {
-            median = (maxHeap.top() + minHeap.top()) / 2.0;
-        }
-        
-        if (median == static_cast<int>(median)) {
-            cout << static_cast<int>(median) << endl;
-        } else {
-            cout << median << endl;
-        }
-    }
-    
-    return 0;
+    scanf("%d", &n);
+    while (n--)
+        solve();
 }

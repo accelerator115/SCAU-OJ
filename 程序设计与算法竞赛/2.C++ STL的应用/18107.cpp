@@ -5,27 +5,26 @@
 
 using namespace std;
 
-class Stu
+struct Stu
 {
-public:
     int cnt;
     int time;
     string name;
-    Stu(int cnt, int time, string name) : cnt(cnt), time(time), name(name) {};
-    Stu() : cnt(0), time(0), name("") {};
-    bool operator<(const Stu &stu) const
-    {
-        if(cnt == stu.cnt)
-        {
-            if(time == stu.time)
-            {
-                return false;
-            }
-            return time < stu.time;
-        }
-        return cnt > stu.cnt;
-    }
 };
+
+// 全局比较函数，用于排序
+bool cmp(const Stu &a, const Stu &b)
+{
+    if(a.cnt == b.cnt)
+    {
+        if(a.time == b.time)
+        {
+            return false;
+        }
+        return a.time < b.time;
+    }
+    return a.cnt > b.cnt;
+}
 
 Stu stu[500000];
 
@@ -36,12 +35,9 @@ int main()
     cin >> n;
     for(int i = 0; i < n; i++)
     {
-        int cnt, time;
-        string name;
-        cin >> cnt >> time >> name;
-        stu[i] = Stu(cnt, time, name);
+        cin >> stu[i].cnt >> stu[i].time >> stu[i].name;
     }
-    stable_sort(stu, stu + n);
+    stable_sort(stu, stu + n, cmp);
     for(int i = 0; i < n; i++)
     {
         cout << stu[i].name << endl;
