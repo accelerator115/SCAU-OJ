@@ -28,5 +28,6 @@ int main() {
         cin >> arr[i];
     }
     insertionSort(arr, n);
+    delete[] arr;
     return 0;
 }

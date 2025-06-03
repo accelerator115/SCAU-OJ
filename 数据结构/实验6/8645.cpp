@@ -7,7 +7,6 @@ void merge(int arr[], int left, int mid, int right, int temp[]) {
     int j = mid + 1;      
     int k = left;         
 
-
     while (i <= mid && j <= right) {
         if (arr[i] <= arr[j]) {
             temp[k++] = arr[i++];
@@ -16,22 +15,18 @@ void merge(int arr[], int left, int mid, int right, int temp[]) {
         }
     }
 
-
     while (i <= mid) {
         temp[k++] = arr[i++];
     }
-
 
     while (j <= right) {
         temp[k++] = arr[j++];
     }
 
-
     for (int m = left; m <= right; m++) {
         arr[m] = temp[m];
     }
 }
-
 
 void mergeSort(int arr[], int n) {
     int* temp = (int*)malloc(n * sizeof(int));
@@ -58,12 +53,13 @@ int main() {
     int n;
     scanf("%d", &n);
 
-    int arr[n];
+    int *arr = new int[n];
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
 
     mergeSort(arr, n);
 
+    delete[] arr;
     return 0;
 }

@@ -1,4 +1,3 @@
-
 #include"malloc.h" /* malloc()等 */
 #include"stdlib.h" /* exit() */
 #include"stdio.h"

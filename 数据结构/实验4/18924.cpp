@@ -1,60 +1,36 @@
 #include <iostream>
 #include <queue>
+
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-
-int main() {
-    int n;
-    cin >> n;
-    
-    TreeNode** nodes = new TreeNode*[n + 1];
-    for (int i = 1; i <= n; i++) {
-        nodes[i] = new TreeNode(i);
+int n,child[105][3],ans=1;
+int main()
+{
+    int i,j,x,y;
+    cin>>n;
+    for(i=1; i<n; i++)
+    {
+        cin>>x>>y;
+        if(!child[x][1])
+            child[x][1]=y;
+        else
+            child[x][2]=y;
     }
-    
-    bool* hasLeft = new bool[n + 1];
-    for (int i = 1; i <= n; i++) {
-        hasLeft[i] = false;
-    }
-    
-    for (int i = 0; i < n - 1; i++) {
-        int x, y;
-        cin >> x >> y;
-        
-        if (!hasLeft[x]) {
-            nodes[x]->left = nodes[y];
-            hasLeft[x] = true;
-        } else {
-            nodes[x]->right = nodes[y];
-        }
-    }
-
-    queue<TreeNode*> q;
-    q.push(nodes[1]);
-    
-    int maxWidth = 0;
-    
-    while (!q.empty()) {
-        int size = q.size();
-        if (size > maxWidth) {
-            maxWidth = size;
-        }
-        
-        for (int i = 0; i < size; i++) {
-            TreeNode* node = q.front();
+    queue<int>q;
+    q.push(1);
+    while(q.size())
+    {
+        int len=q.size();
+        ans=max(ans,len);
+        for(i=0;i<len;i++)
+        {
+            int t=q.front();
             q.pop();
-            
-            if (node->left) q.push(node->left);
-            if (node->right) q.push(node->right);
+            if(child[t][1])
+                q.push(child[t][1]);
+            if(child[t][2])
+                q.push(child[t][2]);
         }
     }
-    
-    cout << maxWidth << endl;
+    cout<<ans;
     return 0;
 }

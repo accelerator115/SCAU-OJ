@@ -18,13 +18,13 @@ int main()
         {
             if(a[i]>0)
             {
-                while(a[j]>0 and i<j)
+                while(a[j]>0 && i<j)
                     j--;
                 swap(a[i],a[j]);
             }
             if(a[j]<0)
             {
-                while(a[i]<0 and i<j)
+                while(a[i]<0 && i<j)
                     i++;
                 swap(a[i],a[j]);
             }

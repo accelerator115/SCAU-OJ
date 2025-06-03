@@ -1,60 +1,30 @@
 #include <iostream>
+#include <algorithm>
+
 using namespace std;
-
-struct TreeNode
+int n,child[105][3],ans=0;
+int dfs(int root)
 {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-int diameter = 0;
-int depth(TreeNode *node)
-{
-    if (!node)
+    if(!root)
         return 0;
-
-    int leftDepth = depth(node->left);
-    int rightDepth = depth(node->right);
-    diameter = max(diameter, leftDepth + rightDepth);
-    return max(leftDepth, rightDepth) + 1;
+    int lchild=dfs(child[root][1]),rchild=dfs(child[root][2]);
+    int len=max(lchild,rchild)+1;
+    ans=max(ans,lchild+rchild);
+    return len;
 }
-int diameterOfBinaryTree(TreeNode *root)
-{
-    diameter = 0;
-    depth(root);
-    return diameter;
-}
-
 int main()
 {
-    int n;
-    cin >> n;
-
-    TreeNode **nodes = new TreeNode *[n + 1];
-    for (int i = 1; i <= n; i++)
+    int i,j,x,y;
+    cin>>n;
+    for(i=1; i<n; i++)
     {
-        nodes[i] = new TreeNode(i);
-    }
-
-    bool *hasLeft = new bool[n + 1]();
-
-    for (int i = 0; i < n - 1; i++)
-    {
-        int parent, child;
-        cin >> parent >> child;
-
-        if (!hasLeft[parent])
-        {
-            nodes[parent]->left = nodes[child];
-            hasLeft[parent] = true;
-        }
+        cin>>x>>y;
+        if(!child[x][1])
+            child[x][1]=y;
         else
-        {
-            nodes[parent]->right = nodes[child];
-        }
+            child[x][2]=y;
     }
-
-    cout << diameterOfBinaryTree(nodes[1]) << endl;
+    dfs(1);
+    cout<<ans;
     return 0;
 }

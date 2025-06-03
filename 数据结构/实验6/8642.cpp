@@ -26,6 +26,7 @@ int Qsort(int l, int r)
         a[r]=a[l];
     }
     a[l]=temp;
+    printf("%d %d\n",temp,l);
     return l;
 }
 

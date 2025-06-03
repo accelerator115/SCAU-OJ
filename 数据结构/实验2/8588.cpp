@@ -1,3 +1,4 @@
+// 不考
 #include<malloc.h> 
 #include<stdio.h> 
 #define OK 1
