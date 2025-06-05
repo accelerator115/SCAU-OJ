@@ -49,3 +49,16 @@ int main() {
     DecimalToOctal(decimal);
     return 0;
 }
+
+//偷鸡大法好
+// #include <iostream>
+
+// using namespace std;
+
+// int main()
+// {
+//     int n;
+//     cin>>n;
+//     printf("%o",n);
+//     return 0;
+// }

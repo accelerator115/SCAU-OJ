@@ -15,6 +15,8 @@ typedef struct BiTNode
     struct BiTNode *lchild, *rchild; // 左右孩子指针
 } BiTNode, *BiTree;
 
+int d0,d1,d2;
+
 Status CreateBiTree(BiTree &T)
 { // 算法6.4
     // 按先序次序输入二叉树中结点的值（一个字符），’#’字符表示空树，
@@ -27,15 +29,15 @@ Status CreateBiTree(BiTree &T)
     {
         if (!(T = (BiTNode *)malloc(sizeof(BiTNode))))
             return ERROR;
-        T->data = ch;            // 生成根结点
-        CreateBiTree(T->lchild); // 构造左子树
+        T->data = ch;                 // 生成根结点
+        CreateBiTree(T->lchild);       // 构造左子树
         CreateBiTree(T->rchild); // 构造右子树
     }
     return OK;
 } // CreateBiTree
 
-void CountLeaf(BiTree T, int &d0, int &d1, int &d2)
-{ // 统计二叉树T中各层结点数
+void Count(BiTree &T)
+{
     if (T == NULL)
         return;
     if (T->lchild == NULL && T->rchild == NULL) 
@@ -50,17 +52,15 @@ void CountLeaf(BiTree T, int &d0, int &d1, int &d2)
     {
         d1++;
     }
-    CountLeaf(T->lchild, d0, d1, d2);
-    CountLeaf(T->rchild, d0, d1, d2);
-} // CountLeaf
+    Count(T->lchild);
+    Count(T->rchild);    
+}
 
 int main() // 主函数
 {
     // 补充代码
     BiTree T;
-    int d0 = 0, d1 = 0, d2 = 0;
     CreateBiTree(T);
-    CountLeaf(T, d0, d1, d2);
+    Count(T);
     printf("%d\n%d\n%d\n", d2, d1, d0);
-    return 0;
 } // main

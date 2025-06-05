@@ -27,9 +27,9 @@ Status CreateBiTree(BiTree &T)
     {
         if (!(T = (BiTNode *)malloc(sizeof(BiTNode))))
             return ERROR;
-        T->data = ch;                 // 生成根结点
-        CreateBiTree(T->lchild);      // 构造左子树
-        CreateBiTree(T->rchild);      // 构造右子树
+        T->data = ch;            // 生成根结点
+        CreateBiTree(T->lchild); // 构造左子树
+        CreateBiTree(T->rchild); // 构造右子树
     }
     return OK;
 } // CreateBiTree
@@ -38,38 +38,36 @@ Status PreOrderTraverse(BiTree T)
 {
     // 前序遍历二叉树T的递归算法
     // 补全代码,可用多个语句
-    if(T) 
-    {
-        printf("%c", T->data);
-        PreOrderTraverse(T->lchild); 
-        PreOrderTraverse(T->rchild); 
-    }
-
+    if (!T)
+        return ERROR;
+    printf("%c", T->data);
+    PreOrderTraverse(T->lchild);
+    PreOrderTraverse(T->rchild);
+    return OK;
 } // PreOrderTraverse
 
 Status InOrderTraverse(BiTree T)
 {
     // 中序遍历二叉树T的递归算法
     // 补全代码,可用多个语句
-    if(T) 
-    {
-        InOrderTraverse(T->lchild); 
-        printf("%c", T->data);
-        InOrderTraverse(T->rchild); 
-    }
-
+    if (!T)
+        return ERROR;
+    InOrderTraverse(T->lchild);
+    printf("%c", T->data);
+    InOrderTraverse(T->rchild);
+    return OK;
 } // InOrderTraverse
 
 Status PostOrderTraverse(BiTree T)
 {
     // 后序遍历二叉树T的递归算法
     // 补全代码,可用多个语句
-    if(T) 
-    {
-        PostOrderTraverse(T->lchild); 
-        PostOrderTraverse(T->rchild); 
-        printf("%c", T->data);
-    }
+    if (!T)
+        return ERROR;
+    PostOrderTraverse(T->lchild);
+    PostOrderTraverse(T->rchild);
+    printf("%c", T->data);
+    return OK;
 } // PostOrderTraverse
 
 int main() // 主函数

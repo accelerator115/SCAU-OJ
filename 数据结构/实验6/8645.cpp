@@ -63,3 +63,38 @@ int main() {
     delete[] arr;
     return 0;
 }
+// 偷鸡做法（不推荐）
+// #include <iostream>
+// #include <algorithm>
+ 
+// using namespace std;
+// typedef long long i64;
+// int n, a[100000];
+ 
+// void print()
+// {
+//     for (int i = 0; i < n; i++)
+//         printf("%d ", a[i]);
+//     printf("\n");
+// }
+ 
+// int main()
+// {
+//     scanf("%d", &n);
+//     for (int i = 0; i < n; i++)
+//         scanf("%d", &a[i]);
+//     int x = 1;
+//     while (x < n)
+//     {
+//         x*=2;
+//         for(int i=0;i<n;i+=x)
+//         {
+//             if(i+x<n)
+//                 sort(a+i,a+i+x);
+//             else
+//                 sort(a+i,a+n);
+//         }
+//         print();
+//     }
+//     return 0;
+// }
