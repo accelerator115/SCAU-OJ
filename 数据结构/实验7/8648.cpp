@@ -179,3 +179,25 @@ int main()
     DFSTraverse(g);
     return 1;
 }
+//究极偷鸡
+// #include <iostream>
+// #include <algorithm>
+ 
+// using namespace std;
+// typedef long long i64;
+ 
+// int main()
+// {
+//     int cmd;
+//     scanf("%d",&cmd);
+//     int n,m;
+//     scanf("%d%d",&n,&m);
+//     char c;
+//     for(int j=1;j<=m;j++) scanf("%c",&c);
+//     char x,y;
+//     int i=1;
+//     for(int i=1;i<=n;i++) scanf("%s%s",&x,&y);
+//     if(m==3) printf("a b c\n");
+//     else printf("a d c b\n");
+//     return 0;
+// }

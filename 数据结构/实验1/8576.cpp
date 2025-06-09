@@ -49,9 +49,12 @@ int ListInsert_Sq(SqList &L, int i, int e)
         L.elem = newbase;
         L.listsize += LISTINCREMENT;
     }
-    int *q = &(L.elem[i - 1]); 
-    for (int *p = &(L.elem[L.length - 1]); p >= q; p--) *(p + 1) = *p;
-    *q = e; 
+    // int *q = &(L.elem[i - 1]); 
+    // for (int *p = &(L.elem[L.length - 1]); p >= q; p--) *(p + 1) = *p;
+    // *q = e;
+    for(int j=L.length - 1; j >= i - 1; j--) 
+        L.elem[j + 1] = L.elem[j];
+    L.elem[i - 1] = e; 
     L.length++; 
     return OK;
 }
@@ -61,9 +64,12 @@ int ListDelete_Sq(SqList &L, int i, int &e)
     // 算法2.5,在顺序线性表L中删除第i个位置的元素，并用e返回其值
     // i的合法值为1≤i≤L.length
     if (i < 1 || i > L.length) return ERROR;
-    int *p = &(L.elem[i - 1]);
-    e = *p; 
-    for (int *q = p + 1; q <= &(L.elem[L.length - 1]); q++) *(q - 1) = *q;
+    // int *p = &(L.elem[i - 1]);
+    // e = *p; 
+    // for (int *q = p + 1; q <= &(L.elem[L.length - 1]); q++) *(q - 1) = *q;
+    e = L.elem[i - 1];
+    for (int j = i - 1; j < L.length - 1; j++)
+        L.elem[j] = L.elem[j + 1];
     L.length--;
     return OK;
 }

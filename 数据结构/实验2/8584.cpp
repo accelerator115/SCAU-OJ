@@ -28,11 +28,15 @@ Status EnQueue(SqQueue &Q, QElemType e)
 {
     // 插入元素e为Q的新的队尾元素
     // 请补全代码
-    SqQueue *p = &Q;
-    if ((p->rear + 1) % MAXQSIZE == p->front)
+    // SqQueue *p = &Q;
+    // if ((p->rear + 1) % MAXQSIZE == p->front)
+    //     return ERROR;
+    // p->base[p->rear] = e;
+    // p->rear = (p->rear + 1) % MAXQSIZE;
+    if((Q.rear + 1) % MAXQSIZE == Q.front)
         return ERROR;
-    p->base[p->rear] = e;
-    p->rear = (p->rear + 1) % MAXQSIZE;
+    Q.base[Q.rear] = e;
+    Q.rear = (Q.rear + 1) % MAXQSIZE;
     return OK;
 }
 

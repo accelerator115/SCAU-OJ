@@ -50,7 +50,7 @@ int main() {
     return 0;
 }
 
-//偷鸡大法好
+//偷鸡大法
 // #include <iostream>
 
 // using namespace std;
