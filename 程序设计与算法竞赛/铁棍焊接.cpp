@@ -27,11 +27,8 @@ int main() {
     }
     
     // 输出结果
-    bool first = true;
     for (long long length : results) {
-        if (!first) cout << " ";
-        cout << length;
-        first = false;
+        cout << length << " ";
     }
     cout << endl;
     

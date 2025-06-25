@@ -13,6 +13,8 @@ int main() {
     if (x2 - x1 == x3 - x2) {
         int d = x2 - x1;
         int missing = x1 - d;
+        int missing1 = x3 + d;
+        candidates.push_back(missing1);
         candidates.push_back(missing);
     }
 
@@ -25,12 +27,6 @@ int main() {
     if (x3 - x2 == 2 * (x2 - x1)) {
         int d = x2 - x1;
         int missing = x2 + d;
-        candidates.push_back(missing);
-    }
-    
-    if (x2 - x1 == x3 - x2) {
-        int d = x2 - x1;
-        int missing = x3 + d;
         candidates.push_back(missing);
     }
 
