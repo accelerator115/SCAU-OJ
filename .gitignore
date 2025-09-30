@@ -5,3 +5,4 @@
 /test.c
 /test.cpp
 *.exe
+.vscode/
