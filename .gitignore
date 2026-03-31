@@ -6,3 +6,4 @@
 /test.cpp
 *.exe
 .vscode/
+*/*/.cph
